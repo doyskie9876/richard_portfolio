@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Richard M. Credo | Portfolio</title>
+    <!-- FontAwesome icons for a modern UI look -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e40af;
+            --primary-light: #3b82f6;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --hero-bg: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+            --hero-text: #ffffff;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            --primary: #3b82f6;
+            --primary-light: #60a5fa;
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --hero-bg: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            transition: var(--transition);
+        }
+
+        /* Navigation Layout */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-main);
+            cursor: pointer;
+            font-size: 1.1rem;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--border);
+        }
+
+        /* Hero Splash Banner Section */
+        header {
+            padding: 10rem 2rem 5rem 2rem;
+            background: var(--hero-bg);
+            color: var(--hero-text);
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        /* Modern profile image container */
+        .profile-img-container {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            margin-bottom: 1rem;
+            background-color: #ffffff; /* Gives it a crisp canvas look */
+        }
+
+        .profile-img-container:hover {
+            transform: scale(1.05);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.25rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        header p.hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .hero-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background-color: #ffffff;
+            color: #1e3a8a;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.2);
+        }
+
+        /* Main Structural Body Panels */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        section {
+            margin-bottom: 5rem;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 4px;
+            background-color: var(--primary-light);
+            border-radius: 2px;
+        }
+
+        /* Profile Box Styling */
+        .profile-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .profile-box p {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        /* Skill Grid Elements & Filter Matrix */
+        .skills-filter {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.5rem 1.25rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .skill-icon {
+            font-size: 1.75rem;
+            color: var(--primary-light);
+            margin-bottom: 1rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Clean Experience Timeline Elements */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .timeline-item {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .role-title h3 {
+            font-size: 1.3rem;
+            color: var(--text-main);
+        }
+
+        .role-title h4 {
+            font-size: 1.05rem;
+            color: var(--primary-light);
+            font-weight: 600;
+        }
+
+        .timeline-date {
+            background-color: var(--border);
+            color: var(--text-main);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .timeline-body ul {
+            list-style-type: none;
+        }
+
+        .timeline-body li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .timeline-body li::before {
+            content: "•";
+            color: var(--primary-light);
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        /* Academic Background & Qualifications Grid Split */
+        .two-column-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .two-column-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .info-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.25rem;
+        }
+
+        .info-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .info-sub {
+            color: var(--primary-light);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .info-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Language Tags styling */
+        .lang-list {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .lang-badge {
+            background-color: var(--border);
+            color: var(--text-main);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Footer block social elements styling */
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-icon {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background-color: var(--bg-card);
+            border-top: 1px solid var(--border);
+            text-align: center;
+            padding: 2.5rem 2rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        /* Media Screen Responsiveness Adaptations */
+        @media (max-width: 768px) {
+            header { padding: 8rem 2rem 4rem 2rem; }
+            header h1 { font-size: 2.25rem; }
+            header p.hero-subtitle { font-size: 1.2rem; }
+            .nav-links { display: none; }
+            .profile-box { padding: 1.5rem; }
+            .profile-img-container { width: 120px; height: 120px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Unified Fixed Navigation Header Panel -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Richard M. Credo</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education & Eligibility</a></li>
+                <li>
+                    <button class="theme-toggle" id="themeBtn" aria-label="Toggle structural dark theme container">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Professional Splash Hero Jumbotron Section -->
+    <header>
+        <div class="hero-container">
+            <!-- Fixed Image Target Element -->
+            <div class="profile-img-container">
+                <img src="richard.png" alt="Richard M. Credo Professional Profile Photo" class="profile-img">
+            </div>
+            <h1>Richard M. Credo</h1>
+            <p class="hero-subtitle">IT Specialist & Healthcare Systems Administrator</p>
+            <div class="hero-meta">
+                <span><i class="fa-solid fa-location-dot"></i> Bislig City, Philippines</span>
+                <span><i class="fa-solid fa-envelope"></i> doyskie9876@gmail.com</span>
+                <span><i class="fa-solid fa-phone"></i> +639761146101</span>
+            </div>
+            <div class="social-links">
+                <a href="https://www.upwork.com/freelancers/~01b5c222dbc201f50b" target="_blank" class="btn btn-primary">
+                    <i class="fa-brands fa-upwork"></i> Upwork Profile
+                </a>
+                <a href="https://www.onlinejobs.ph/jobseekers/info/1271568" target="_blank" class="btn btn-primary">
+                    <i class="fa-solid fa-briefcase"></i> OnlineJobs Profile
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Primary Structural Site Subsections -->
+    <main>
+        <!-- Executive About Profile Section -->
+        <section id="about">
+            <h2>Professional Profile</h2>
+            <div class="profile-box">
+                <p>
+                    Detail-oriented and versatile professional with over 15 years of dedicated experience bridging the gap between Information Technology and healthcare operations. Proven track record at Bislig District Hospital managing complex hospital information systems, troubleshooting hardware/software, and securing critical database networks.
+                </p>
+                <p>
+                    Adept at handling PhilHealth claims processing, billing compliance, and Electronic Medical Records (EMR) to optimize administrative workflows and improve reimbursement timelines. Brings strong analytical problem-solving skills, comprehensive administrative healthcare knowledge, and a commitment to service excellence in fast-paced hospital environments.
+                </p>
+            </div>
+        </section>
+
+        <!-- Dynamic Filterable Capability Matrix Section -->
+        <section id="skills">
+            <h2>Core Competencies</h2>
+            <div class="skills-filter">
+                <button class="filter-btn active" onclick="filterSkills('all')">All Capabilities</button>
+                <button class="filter-btn" onclick="filterSkills('it')">Information Technology</button>
+                <button class="filter-btn" onclick="filterSkills('health')">Healthcare & Operations</button>
+            </div>
+            
+            <div class="skills-grid" id="skillsGrid">
+                <!-- IT Skill Cards Block -->
+                <div class="skill-card" data-cat="it">
+                    <div class="skill-icon"><i class="fa-solid fa-code"></i></div>
+                    <h3>Software Development</h3>
+                    <p>Experienced VB.Net Developer crafting tailored desktop solutions to fit client specifications.</p>
+                </div>
+                <div class="skill-card" data-cat="it">
+                    <div class="skill-icon"><i class="fa-solid fa-server"></i></div>
+                    <h3>Systems Administration</h3>
+                    <p>Setup, deployment, account structure orchestration, and user administration enforcement policies.</p>
+                </div>
+                <div class="skill-card" data-cat="it">
+                    <div class="skill-icon"><i class="fa-solid fa-database"></i></div>
+                    <h3>Data Management</h3>
+                    <p>Structuring functional file environments and executing scheduled backup protocols for maximum redundancy.</p>
+                </div>
+                <div class="skill-card" data-cat="it">
+                    <div class="skill-icon"><i class="fa-solid fa-network-wired"></i></div>
+                    <h3>Network Diagnostics</h3>
+                    <p>Continuous monitoring of local area network communication pipelines to isolate potential bottlenecks.</p>
+                </div>
+
+                <!-- Healthcare & Operations Skills Block -->
+                <div class="skill-card" data-cat="health">
+                    <div class="skill-icon"><i class="fa-solid fa-hospital-user"></i></div>
+                    <h3>IHOMIS & EMR Management</h3>
+                    <p>Comprehensive support for standard Integrated Hospital Operation Management Information System modules.</p>
+                </div>
+                <div class="skill-card" data-cat="health">
+                    <div class="skill-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                    <h3>PhilHealth Processing</h3>
+                    <p>Strict billing compliance monitoring, pipeline claim scrubbing, and medical registry compilation.</p>
+                </div>
+                <div class="skill-card" data-cat="health">
+                    <div class="skill-icon"><i class="fa-solid fa-user-check"></i></div>
+                    <h3>Virtual Assistance</h3>
+                    <p>Proficient technical client lead generation, structural high-volume data entry workflows, and remote system execution.</p>
+                </div>
+                <div class="skill-card" data-cat="health">
+                    <div class="skill-icon"><i class="fa-solid fa-video"></i></div>
+                    <h3>Multimedia Campaigning</h3>
+                    <p>Visual graphic arrangement, printing layout structures, and dynamic video composition pipelines.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chronological Employment Records Timeline Section -->
+        <section id="experience">
+            <h2>Work Experience</h2>
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div class="role-title">
+                            <h3>IT Specialist / Programmer</h3>
+                            <h4>Bislig District Hospital</h4>
+                        </div>
+                        <span class="timeline-date">2012 – 2025</span>
+                    </div>
+                    <div class="timeline-body">
+                        <ul>
+                            <li><strong>System Development & Maintenance:</strong> Developed, maintained, and updated customized software systems tailored directly to unique hospital operational setups.</li>
+                            <li><strong>System Administration:</strong> Monitored system performance, managed account lifecycle configurations, and established robust computer network security policies.</li>
+                            <li><strong>Data Security:</strong> Formulated and executed daily structured database backup protocols to ensure complete data security and data integrity.</li>
+                            <li><strong>Infrastructure Support:</strong> Monitored local network communications and rapidly deployed troubleshooting/repair pipelines for hardware peripherals to minimize operational downtime.</li>
+                            <li><strong>Upgrades & Policy:</strong> Supervised software application environments and handled timely deployment of operating system updates, patches, and version upgrades.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div class="role-title">
+                            <h3>Computer Encoder</h3>
+                            <h4>Bislig District Hospital</h4>
+                        </div>
+                        <span class="timeline-date">2009 – 2012</span>
+                    </div>
+                    <div class="timeline-body">
+                        <ul>
+                            <li><strong>Data Management:</strong> Functioned as the designated core end-user for the hospital's central Disease Registry database, ensuring precise data input and processing.</li>
+                            <li><strong>Hardware Maintenance:</strong> Performed routing technical tasks, preventative maintenance, and minor repairs on hospital computer workstations and peripheral hardware.</li>
+                            <li><strong>Creative Production:</strong> Designed, structured, and executed specialized multimedia layouts and video content intended for official hospital healthcare campaigns.</li>
+                            <li><strong>Administrative Support:</strong> Managed structural network/internet connections, encoded and finalized formal hospital medical forms, and completed priority tasks requested by medical staff.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Academic and Extra Qualifications Grid Section -->
+        <section id="education">
+            <div class="two-column-grid">
+                
+                <div>
+                    <h2>Education</h2>
+                    <div class="info-card">
+                        <h4>Bachelor of Science in Information Technology</h4>
+                        <div class="info-sub">Andres Soriano College</div>
+                        <div class="info-meta">Bislig City | 2009 – 2011</div>
+                    </div>
+                    <div class="info-card">
+                        <h4>Bachelor of Science in Commerce</h4>
+                        <div class="info-sub">Andres Soriano College</div>
+                        <div class="info-meta">Bislig City | 2001 – 2009</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2>Eligibility & Credentials</h2>
+                    <div class="info-card">
+                        <h4>Civil Service Career Eligibility</h4>
+                        <div class="info-sub">Sub-Professional Level</div>
+                        <div class="info-meta">Government Certification</div>
+                    </div>
+                    <div class="info-card">
+                        <h4>Medical Billing and Coding Diploma</h4>
+                        <div class="info-sub">Professional Certification</div>
+                        <div class="info-meta">Healthcare Administration Credentials</div>
+                    </div>
+
+                    <h2 style="margin-top: 2rem;">Languages</h2>
+                    <div class="lang-list">
+                        <span class="lang-badge">English</span>
+                        <span class="lang-badge">Tagalog</span>
+                        <span class="lang-badge">Bisaya</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Structural Footer Component with Added Social Links -->
+    <footer>
+        <div class="footer-socials">
+            <a href="https://www.facebook.com/richard.credo.90" target="_blank" class="social-icon" aria-label="Visit Richard's Facebook Profile">
+                <i class="fa-brands fa-facebook"></i>
+            </a>
+            <a href="https://www.upwork.com/freelancers/~01b5c222dbc201f50b" target="_blank" class="social-icon" aria-label="Visit Richard's Upwork Profile">
+                <i class="fa-brands fa-upwork"></i>
+            </a>
+        </div>
+        <p>&copy; 2026 Richard M. Credo. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Behavioral Engine Control Script -->
+    <script>
+        // Skill categories client-side filtering matrix
+        function filterSkills(category) {
+            const cards = document.querySelectorAll('.skill-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Toggle active filter tracking styling state
+            buttons.forEach(btn => {
+                if(btn.textContent.toLowerCase().includes(category) || (category === 'all' && btn.textContent.toLowerCase().includes('all'))) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Handle visibility switching animation transitions
+            cards.forEach(card => {
+                const cat = card.getAttribute('data-cat');
+                if (category === 'all' || cat === category) {
+                    card.style.display = 'block';
+                    setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'scale(1)'; }, 10);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.95)';
+                    setTimeout(() => { card.style.display = 'none'; }, 200);
+                }
+            });
+        }
+
+        // Dark/Light layout mode theme controller toggle script 
+        const themeBtn = document.getElementById('themeBtn');
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            }
+        });
+    </script>
+</body>
+</html>
